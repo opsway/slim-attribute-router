@@ -48,7 +48,77 @@ $app->run();
 
 * The "methods" parameter is required and must be not empty
 * The "path" parameter is required and must be not empty
-* All other parameters is optional
+* Rest of parameters are optional
 
-## Adding Attribute
-See examples above:
+**#[Group({name}, [[, {classes}]])]**
+
+| Parameter | Example               | Description                     |
+|-----------|-----------------------|---------------------------------|
+| {name}    | '/api'                | (string) The group name         |
+| {classes} | ['Middleware::class'] | (array) Middlewares class names |
+
+* The "name" parameter is required and must be compatible with URI string requirements
+* The "classes" parameter is optional. List of classes implementing Psr\Http\Server\MiddlewareInterface
+
+**#[Middlewares({firstClass}, [, {secondClass}])]**
+
+| Parameter    | Example               | Description                    |
+|--------------|-----------------------|--------------------------------|
+| {firstClass} | ['Middleware::class'] | (string) Middleware class name |
+
+* The "firstClass" parameter is required and must class name of class that implements Psr\Http\Server\MiddlewareInterface
+* The "secondClass" and all other parameters is optional.
+* All arguments of constructor are converted to an array of middleware classes. It should be at least one middleware class
+
+## Specifying attributes examples
+
+Example specifying route with name and group parameters at class level
+```php
+<?php
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
+#[Route([Route::METHOD_GET], '/api/hello-world', '/hello-world-group', 'api.hello-world.route-name')]
+class HelloWorld
+{
+    public function __invoke(Request $request, Response $response): Response
+    {
+        // some php code
+        return $response;
+    }
+}
+```
+
+Example specifying route without additional parameters at method level
+```php
+<?php
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
+class HelloWorld
+{
+    #[Route([Route::METHOD_GET], '/api/hello-world')]
+    public function __invoke(Request $request, Response $response): Response
+    {
+        // some php code
+        return $response;
+    }
+}
+```
+
+Example specifying group with middlewares at class level
+```php
+<?php
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
+#[Group('/api', [FirstMidleware::class, SecondMidleware::class])]
+class HelloWorld
+{
+    public function __invoke(Request $request, Response $response): Response
+    {
+        // some php code
+        return $response;
+    }
+}
+```

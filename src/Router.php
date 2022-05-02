@@ -27,7 +27,7 @@ use const ARRAY_FILTER_USE_KEY;
 
 class Router extends RouteCollector
 {
-    private const COMPOSER_AUTOLOAD = __DIR__ . '/../../autoload.php';
+    private const COMPOSER_AUTOLOAD = __DIR__ . '/../../../autoload.php';
     private const GROUP_ROUTES_KEY  = 'routes';
     private const GROUP_MW_KEY      = 'middlewares';
 
