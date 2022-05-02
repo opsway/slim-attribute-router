@@ -1,0 +1,41 @@
+{
+    "name": "opsway/slim-attribute-router",
+    "description": "Slim attribute router with support of groups and middlewares",
+    "license": "MIT",
+    "type": "library",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "OpsWay",
+            "email": "support@opsway.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "beberlei/assert": "^3.3.0",
+        "slim/slim": "4.*"
+    },
+    "require-dev": {
+        "opsway/psr12-strict-coding-standard": "^0.5.0",
+        "vimeo/psalm": "^4.22",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "OpsWay\\Slim\\AttributeRouter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "cs-check": "phpcs",
+        "cs-report": "phpcs --report=source",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --no-coverage",
+        "test-cover": "phpunit",
+        "psalm": "psalm"
+    }
+}

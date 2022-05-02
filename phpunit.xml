@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<phpunit
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    bootstrap="./vendor/autoload.php"
+    colors="true"
+    convertErrorsToExceptions="false"
+    convertNoticesToExceptions="false"
+    convertWarningsToExceptions="false"
+    verbose="true" stopOnFailure="false"
+    processIsolation="false"
+    backupGlobals="false"
+    failOnWarning="true"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+>
+<coverage includeUncoveredFiles="true" processUncoveredFiles="true">
+    <include>
+        <directory suffix=".php">./src/</directory>
+    </include>
+    <exclude>
+        <directory suffix=".php">data/*</directory>
+        <directory suffix=".php">vendor/*</directory>
+        <directory suffix=".php">tests/</directory>
+    </exclude>
+    <report>
+        <clover outputFile="./data/reports/coverage.xml"/>
+    </report>
+</coverage>
+<testsuites>
+    <testsuite name="Slim Attribute Router Tests">
+        <directory suffix="Test.php">./tests/</directory>
+    </testsuite>
+</testsuites>
+<logging>
+    <junit outputFile="./data/reports/unitreport.xml"/>
+</logging>
+<php>
+    <ini name="memory_limit" value="2048M"/>
+</php>
+</phpunit>
