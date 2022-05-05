@@ -18,7 +18,7 @@ composer require opsway/slim-attribute-router
 
 ## Enabling the Attribute Router
 Attribute router extends slims default RouteCollector, all you need to do is instantiate attribute router and pass
-it on to AppFactory. First parameter is root namespace part of app. It will be used for filtering classes in which 
+it on to AppFactory. First parameter is array of namespace parts of app. It will be used for filtering classes in which 
 search of parameters will go on.
 
 ```php
@@ -26,7 +26,7 @@ search of parameters will go on.
 use OpsWay\Slim\AttributeRouter\Router;
 use Slim\Factory\AppFactory;
 $route = new Router([
-    ['NameSpace'], // the "root" namespace of app 
+    ['NameSpace'], // array of namespaces parts of app 
 	AppFactory::determineResponseFactory(),
 	new CallableResolver($container) // optional DI container
 );
@@ -50,7 +50,7 @@ $app->run();
 * The "path" parameter is required and must be not empty
 * Rest of parameters are optional
 
-**#[Group({name}, [[, {classes}]])]**
+**#[Group({name} [[, {classes}]])]**
 
 | Parameter | Example               | Description                     |
 |-----------|-----------------------|---------------------------------|
@@ -60,7 +60,7 @@ $app->run();
 * The "name" parameter is required and must be compatible with URI string requirements
 * The "classes" parameter is optional. List of classes implementing Psr\Http\Server\MiddlewareInterface
 
-**#[Middlewares({firstClass}, [, {secondClass}])]**
+**#[Middlewares({firstClass} [, {secondClass}])]**
 
 | Parameter    | Example               | Description                    |
 |--------------|-----------------------|--------------------------------|

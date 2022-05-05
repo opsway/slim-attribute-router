@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace OpsWay\StdLib\UnitTest\Routing;
+namespace Tests\Unit\Attributes;
 
 use OpsWay\Slim\AttributeRouter\Exception\InvalidRouteException;
 use OpsWay\Slim\AttributeRouter\Group;
